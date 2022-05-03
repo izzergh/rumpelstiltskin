@@ -54,6 +54,19 @@ let g:rumpelstiltskin_cldr_n='<Leader>:'
 Plugin 'izzergh/rumpelstiltskin'
 ```
 
+# Demo
+Here's what it looks like! (I need to find one of them fancy screen-record-into-gif tools)
+
+## Inserting a symbol in normal mode:
+![normalsearch](https://user-images.githubusercontent.com/17604174/166576199-221d3c1d-fa8b-4111-b9d0-b14e5c764d96.png)
+![normalafter](https://user-images.githubusercontent.com/17604174/166576194-87da78dc-a5af-4e9e-b413-c4862820bfa0.png)
+
+## Inserting a symbol in insert mode:
+The pop-up is tiny because I increased the font for legibility, but it works just fine :)
+![insertsearch](https://user-images.githubusercontent.com/17604174/166576734-9f0c9d07-b369-4693-9a70-d1fa91c1c2d5.png)
+![insertafter](https://user-images.githubusercontent.com/17604174/166576729-bfa95bfb-4a93-4bab-ae27-af773422af22.png)
+
+
 # Upcoming changes! (a.k.a. the wishlist)
 * Add extension support and documentation for extension
 * Add "similar plugins" section
