@@ -2,6 +2,7 @@ if exists('g:loaded_rumpelstiltskin')
   finish
 endif
 " Start below this line
+let g:rumpelstiltskin_cldr_source = expand('<sfile>:p:h:h') . '/cldr_source.txt'
 
 func! rumpelstiltskin#cldr_complete()
   call fzf#vim#complete(fzf#wrap({
@@ -13,7 +14,11 @@ func! rumpelstiltskin#cldr_complete()
   return ''
 endfunc
 
-inoremap <expr> : rumpelstiltskin#cldr_complete()
+if exists('g:cldr_keybind')
+  exec 'inoremap <expr> ' . g:cldr_keybind . ' rumpelstiltskin#cldr_complete()'
+else
+  inoremap <expr> <C-X>: rumpelstiltskin#cldr_complete()
+endif
 
 " Finish above this line
 let g:loaded_rumpelstiltskin = 1
