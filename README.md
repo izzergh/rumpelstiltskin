@@ -26,6 +26,11 @@ First, install `fzf.vim`. **This plugin will not work without `fzf.vim`**.
 Then, simply use your favorite vim plugin manager. I use `vundle`,
   which looks like this:
 
+## Vundle
+```
+Plugin 'izzergh/rumpelstiltskin'
+```
+
 # Customization
 
 The keybinds that start the fuzzy search can all be changed!
@@ -48,11 +53,6 @@ let g:rumpelstiltskin_cldr_n='<Leader>:'
 |--------------------------|-------------|--------------------------------------------------------|
 |`g:rumpelstiltskin_cldr_i`|`'<C-X>:'`   |Fuzzy search in a pop-up from insert mode               |
 |`g:rumpelstiltskin_cldr_n`|`'<Leader>:'`|Fuzzy search in your default fzf window from normal mode|
-
-## Vundle
-```
-Plugin 'izzergh/rumpelstiltskin'
-```
 
 # Demo
 Here's what it looks like! (I need to find one of them fancy screen-record-into-gif tools)
