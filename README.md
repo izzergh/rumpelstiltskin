@@ -23,12 +23,16 @@ Issues and PRs are welcome in that case, just please be kind!
 # Installation
 First, install `fzf.vim`. **This plugin will not work without `fzf.vim`**.
 
-Then, simply use your favorite vim plugin manager. I use `vundle`,
-  which looks like this:
+Then, simply use your favorite vim plugin manager:
 
 ## Vundle
 ```
 Plugin 'izzergh/rumpelstiltskin'
+```
+
+## Vim-Plug
+```
+Plug 'izzergh/rumpelstiltskin'
 ```
 
 # Customization
