@@ -11,7 +11,8 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
+    - created
+    - edited
   schedule:
     - cron: '49 9 * * *' # early morning eastern time
 
