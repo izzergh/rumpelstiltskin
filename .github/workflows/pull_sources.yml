@@ -9,7 +9,7 @@ name: Ruby
 
 on:
   push:
-    branches: [ main ]
+    branches: [ '*' ]
   pull_request:
     branches: [ main ]
   schedule:
@@ -41,3 +41,5 @@ jobs:
       run: sudo apt-get install -y curl
     - name: Pull sources
       run: bundle exec rake pull_all
+    - name: Check diff
+      run: git diff --exit-code
