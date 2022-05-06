@@ -1,9 +1,9 @@
 { ... | brace | bracket | curly brace | curly bracket | gullwing | open curly bracket
-🏻 ... | light skin tone | skin tone | type 1–
-🏼 ... | medium-light skin tone | skin tone | type 
-🏽 ... | medium skin tone | skin tone | type 
-🏾 ... | medium-dark skin tone | skin tone | type 
-🏿 ... | dark skin tone | skin tone | type 
+🏻 ... | light skin tone | skin tone | type 1–2
+🏼 ... | medium-light skin tone | skin tone | type 3
+🏽 ... | medium skin tone | skin tone | type 4
+🏾 ... | medium-dark skin tone | skin tone | type 5
+🏿 ... | dark skin tone | skin tone | type 6
 ‾ ... | overline | overstrike | vinculum
 _ ... | dash | line | low dash | low line | underdash | underline
 - ... | dash | hyphen | hyphen-minus | minus
