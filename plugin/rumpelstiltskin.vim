@@ -5,13 +5,9 @@ endif
 
 " CLDR (unicode with text-to-speech names)
 " Normal mode
-if exists('g:rumpelstiltskin#cldr_n')
-  exec 'nmap ' . g:rumpelstiltskin#cldr_n . ' :rumpelstiltskin#cldr()l'
-else
-  nmap <Leader>: :call rumpelstiltskin#cldr()<CR>
-endif
+command! RumpelCLDR :call rumpelstiltskin#cldr()
 
-" Insert mode
+" Insert mode (currently requires restart to configure)
 if exists('g:rumpelstiltskin_cldr_i')
   exec 'imap <expr> ' . g:rumpelstiltskin_cldr_i . ' rumpelstiltskin#cldr_complete()'
 else
