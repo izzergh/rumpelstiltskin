@@ -33,26 +33,50 @@ Plugin 'izzergh/rumpelstiltskin'
 
 # Customization
 
-The keybinds that start the fuzzy search can all be changed!
-Each subsection has a table. Here's how to use it:
+Normal mode and Insert mode keybinds are configurable in separate ways because
+  insert mode commands are weird and I don't quite get how to use them!
 
-In your runtime configuration or at runtime, set *variable* to some string other
-  than *default*.
-What that keybind will do is summarized in *description*.
+## Normal Mode
 
-For ease of editing, paste the following into your runtime configuration:
+Installing this plugin gives you the following commands:
+
+### Normal Mode Commands
+|Command|Description|
+|-|-|
+|`:RumpelCLDR`|Opens an FZF window to search the [CLDR](https://cldr.unicode.org/#h.59ffxi4tj4wz) set of Unicode characters|
+
+Example mapping:
 
 ```vim
-let g:rumpelstiltskin_cldr_i='<C-X>:'
-let g:rumpelstiltskin_cldr_n='<Leader>:'
+nmap <Leader>: :RumpelCLDR
 ```
 
-## CLDR keybinds
+## Insert Mode
+Insert mode is a little weird because I don't know how to do it better.
+The plugin provides the following public functions:
 
-|variable                  |default      |description                                             |
-|--------------------------|-------------|--------------------------------------------------------|
-|`g:rumpelstiltskin_cldr_i`|`'<C-X>:'`   |Fuzzy search in a pop-up from insert mode               |
-|`g:rumpelstiltskin_cldr_n`|`'<Leader>:'`|Fuzzy search in your default fzf window from normal mode|
+### Insert Mode Functions
+|Function|Description|
+|-|-|
+|`rumpelstiltskin#cldr_complete()`|Opens a mini FZF pop-up to search the [CLDR](https://cldr.unicode.org/#h.59ffxi4tj4wz) set of Unicode characters|
+
+These come with a default mapping (see table below) which can be overwritten
+  by assigning a string to the corresponding variable.
+
+### Insert Mode Variables
+|Variable|Corresponding function|Default value|
+|-|-|-|
+|`g:rumpelstiltskin_cldr_i`|`rumpelstiltskin#cldr_complete()`|`'<C-X>:'`|
+
+Customizing these looks like:
+
+```vim
+let g:rumpelstiltskin_cldr_i = ':cldr'
+```
+
+**NOTE** The way the insert mode customization works requires a restart of vim,
+  not just a `source`.
+This is the weirdness referred to earlier. Sorry! It's on the roadmap.
 
 # Demo
 Here's what it looks like! (I need to find one of them fancy screen-record-into-gif tools)
