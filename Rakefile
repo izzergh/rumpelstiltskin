@@ -4,6 +4,7 @@ desc 'Pull and update all source files'
 task :pull_all do
   Rake::Task['pull_cldr'].invoke
   Rake::Task['pull_full'].invoke
+  Rake::Task['pull_emoji'].invoke
 end
 
 namespace :check do
@@ -32,4 +33,11 @@ task pull_full: %w[check:curl] do
   puts 'pulling full source...'
   ruby './pullers/full.rb'
   puts '🤟 Pulled Full!' # this is awkward wording. TODO.
+end
+
+desc 'Pull emoji source file from unicode.org public site'
+task pull_emoji: %w[check:curl] do
+  puts 'pulling emoji source...'
+  ruby './pullers/emoji.rb'
+  puts '🤟 Pulled emoji!'
 end

@@ -1,5 +1,6 @@
 let g:rumpelstiltskin_cldr_source = expand('<sfile>:p:h:h') . '/cldr_source.txt'
 let g:rumpelstiltskin_full_source = expand('<sfile>:p:h:h') . '/full_source.txt'
+let g:rumpelstiltskin_emoji_source = expand('<sfile>:p:h:h') . '/emoji_source.txt'
 
 " sink function
 function! s:insert_sink(result)
@@ -63,6 +64,25 @@ endfunction
 function! rumpelstiltskin#full()
   call fzf#run(fzf#wrap({
         \ 'source': 'cat ' . g:rumpelstiltskin_full_source,
+        \ 'sink*': function('<SID>insert_sink')
+        \ }))
+endfunction
+
+" Emoji functions
+" Insert mode completion
+function! rumpelstiltskin#emoji_complete()
+  call fzf#vim#complete(fzf#wrap({
+        \ 'source': 'cat ' . g:rumpelstiltskin_emoji_source,
+        \ 'reducer': { text -> split(text[0], ' ... ')[0] },
+        \ 'window': { 'width': 0.6, 'height': 0.2, 'xoffset': 0.5 }
+        \ }))
+  return ''
+endfunction
+
+" Normal mode search
+function! rumpelstiltskin#emoji()
+  call fzf#run(fzf#wrap({
+        \ 'source': 'cat ' . g:rumpelstiltskin_emoji_source,
         \ 'sink*': function('<SID>insert_sink')
         \ }))
 endfunction
