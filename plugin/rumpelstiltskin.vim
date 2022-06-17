@@ -22,7 +22,7 @@ command! RumpelFull :call rumpelstiltskin#full()
 if exists('g:rumpelstiltskin_full_i')
   exec 'imap <expr> ' . g:rumpelstiltskin_full_i . ' rumpelstiltskin#full_complete()'
 else
-  imap <expr> <C-X>: rumpelstiltskin#full_complete()
+  imap <expr> <C-X>u rumpelstiltskin#full_complete()
 endif
 
 " Finish above this line
