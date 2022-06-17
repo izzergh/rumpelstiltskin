@@ -48,6 +48,7 @@ Installing this plugin gives you the following commands:
 |Command|Description|
 |-|-|
 |`:RumpelCLDR`|Opens an FZF window to search the [CLDR](https://cldr.unicode.org/#h.59ffxi4tj4wz) set of Unicode characters|
+|`:RumpelFull`|Opens an FZF window to search all unicode codepoints (except newline...)|
 
 Example mapping:
 
@@ -63,6 +64,7 @@ The plugin provides the following public functions:
 |Function|Description|
 |-|-|
 |`rumpelstiltskin#cldr_complete()`|Opens a mini FZF pop-up to search the [CLDR](https://cldr.unicode.org/#h.59ffxi4tj4wz) set of Unicode characters|
+|`rumpelstiltskin#full_complete()`|Opens a mini FZF pop-up to search all unicode codepoints (except newline...)|
 
 These come with a default mapping (see table below) which can be overwritten
   by assigning a string to the corresponding variable.
@@ -71,6 +73,7 @@ These come with a default mapping (see table below) which can be overwritten
 |Variable|Corresponding function|Default value|
 |-|-|-|
 |`g:rumpelstiltskin_cldr_i`|`rumpelstiltskin#cldr_complete()`|`'<C-X>:'`|
+|`g:rumpelstiltskin_full_i`|`rumpelstiltskin#full_complete()`|`'<C-X>u'`|
 
 Customizing these looks like:
 
@@ -90,5 +93,4 @@ This is the weirdness referred to earlier. Sorry! It's on the roadmap.
 * Add "similar plugins" section
 * Supplement math symbols with LaTeX names, where applicable
 * List sources and include bash scripts for formatting from the source
-* Add one of them neat gifs showing the plugin in action
 * Add tutorial/practice file
