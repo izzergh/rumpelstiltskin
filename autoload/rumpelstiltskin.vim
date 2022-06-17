@@ -1,4 +1,5 @@
 let g:rumpelstiltskin_cldr_source = expand('<sfile>:p:h:h') . '/cldr_source.txt'
+let g:rumpelstiltskin_full_source = expand('<sfile>:p:h:h') . '/full_source.txt'
 
 " sink function
 function! s:insert_sink(result)
@@ -25,6 +26,8 @@ function! rumpelstiltskin#move_right()
   call setpos('.', l:new_pos)
 endfunction
 
+" TODO: DRY the following once you're better at vimscript
+
 " CLDR functions
 " Insert mode completion
 function! rumpelstiltskin#cldr_complete()
@@ -41,6 +44,25 @@ endfunction
 function! rumpelstiltskin#cldr()
   call fzf#run(fzf#wrap({
         \ 'source': 'cat ' . g:rumpelstiltskin_cldr_source,
+        \ 'sink*': function('<SID>insert_sink')
+        \ }))
+endfunction
+
+" General ("Full") functions
+" Insert mode completion
+function! rumpelstiltskin#full_complete()
+  call fzf#vim#complete(fzf#wrap({
+        \ 'source': 'cat ' . g:rumpelstiltskin_full_source,
+        \ 'reducer': { text -> split(text[0], ' ... ')[0] },
+        \ 'window': { 'width': 0.6, 'height': 0.2, 'xoffset': 0.5 }
+        \ }))
+  return ''
+endfunction
+
+" Normal mode search
+function! rumpelstiltskin#full()
+  call fzf#run(fzf#wrap({
+        \ 'source': 'cat ' . g:rumpelstiltskin_full_source,
         \ 'sink*': function('<SID>insert_sink')
         \ }))
 endfunction
