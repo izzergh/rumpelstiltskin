@@ -14,5 +14,16 @@ else
   imap <expr> <C-X>: rumpelstiltskin#cldr_complete()
 endif
 
+" All unicode
+" Normal mode
+command! RumpelFull :call rumpelstiltskin#full()
+
+" Insert mode (current requires restart to configure)
+if exists('g:rumpelstiltskin_full_i')
+  exec 'imap <expr> ' . g:rumpelstiltskin_full_i . ' rumpelstiltskin#full_complete()'
+else
+  imap <expr> <C-X>: rumpelstiltskin#full_complete()
+endif
+
 " Finish above this line
 let g:loaded_rumpelstiltskin = 1
