@@ -12,7 +12,7 @@ Gain power over a symbol by knowing its name.
 This is a vim plugin that lets you fuzzy search for Unicode symbols.
 It uses the completion functionality provided by [fzf.vim](https://github.com/junegunn/fzf.vim)
   and thus that's a dependency.
-It is deisgned to be extendable and customizable, but with solid defaults.
+It is designed to be extendable and customizable, but with solid defaults.
 
 # Caveat
 This is my first plugin, so it may do something that breaks your general setup.
