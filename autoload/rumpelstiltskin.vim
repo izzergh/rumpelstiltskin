@@ -1,5 +1,4 @@
-let g:rumpelstiltskin_cldr_source = expand('<sfile>:p:h:h') . '/cldr_source.txt'
-let g:rumpelstiltskin_full_source = expand('<sfile>:p:h:h') . '/full_source.txt'
+let g:rumpelstiltskin_base_source = expand('<sfile>:p:h:h') . '/base_source.txt'
 let g:rumpelstiltskin_emoji_source = expand('<sfile>:p:h:h') . '/emoji_source.txt'
 
 " sink function
@@ -29,31 +28,11 @@ endfunction
 
 " TODO: DRY the following once you're better at vimscript
 
-" CLDR functions
+" General ("Base") functions
 " Insert mode completion
-function! rumpelstiltskin#cldr_complete()
+function! rumpelstiltskin#base_complete()
   call fzf#vim#complete(fzf#wrap({
-        \ 'source': 'cat ' . g:rumpelstiltskin_cldr_source,
-        \ 'reducer': { text -> split(text[0], ' ... ')[0] },
-        \ 'window': { 'width': 0.6, 'height': 0.2, 'xoffset': 0.5 }
-        \ }))
-  " no return means it returns 0, which inserts the literal 0
-  return ''
-endfunction
-
-" Normal mode search
-function! rumpelstiltskin#cldr()
-  call fzf#run(fzf#wrap({
-        \ 'source': 'cat ' . g:rumpelstiltskin_cldr_source,
-        \ 'sink*': function('<SID>insert_sink')
-        \ }))
-endfunction
-
-" General ("Full") functions
-" Insert mode completion
-function! rumpelstiltskin#full_complete()
-  call fzf#vim#complete(fzf#wrap({
-        \ 'source': 'cat ' . g:rumpelstiltskin_full_source,
+        \ 'source': 'cat ' . g:rumpelstiltskin_base_source,
         \ 'reducer': { text -> split(text[0], ' ... ')[0] },
         \ 'window': { 'width': 0.6, 'height': 0.2, 'xoffset': 0.5 }
         \ }))
@@ -61,9 +40,9 @@ function! rumpelstiltskin#full_complete()
 endfunction
 
 " Normal mode search
-function! rumpelstiltskin#full()
+function! rumpelstiltskin#base()
   call fzf#run(fzf#wrap({
-        \ 'source': 'cat ' . g:rumpelstiltskin_full_source,
+        \ 'source': 'cat ' . g:rumpelstiltskin_base_source,
         \ 'sink*': function('<SID>insert_sink')
         \ }))
 endfunction

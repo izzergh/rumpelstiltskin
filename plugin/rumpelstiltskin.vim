@@ -3,26 +3,15 @@ if exists('g:loaded_rumpelstiltskin')
 endif
 " Start below this line
 
-" CLDR (unicode with text-to-speech names)
-" Normal mode
-command! RumpelCLDR :call rumpelstiltskin#cldr()
-
-" Insert mode (currently requires restart to configure)
-if exists('g:rumpelstiltskin_cldr_i')
-  exec 'imap <expr> ' . g:rumpelstiltskin_cldr_i . ' rumpelstiltskin#cldr_complete()'
-else
-  imap <expr> <C-X>: rumpelstiltskin#cldr_complete()
-endif
-
 " All unicode
 " Normal mode
-command! RumpelFull :call rumpelstiltskin#full()
+command! RumpelBase :call rumpelstiltskin#base()
 
 " Insert mode (current requires restart to configure)
-if exists('g:rumpelstiltskin_full_i')
-  exec 'imap <expr> ' . g:rumpelstiltskin_full_i . ' rumpelstiltskin#full_complete()'
+if exists('g:rumpelstiltskin_base_i')
+  exec 'imap <expr> ' . g:rumpelstiltskin_base_i . ' rumpelstiltskin#base_complete()'
 else
-  imap <expr> <C-X>u rumpelstiltskin#full_complete()
+  imap <expr> <C-X>u rumpelstiltskin#base_complete()
 endif
 
 " Emoji
