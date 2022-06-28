@@ -47,8 +47,7 @@ Installing this plugin gives you the following commands:
 ### Normal Mode Commands
 |Command|Description|
 |-|-|
-|`:RumpelCLDR`|Opens an FZF window to search the [CLDR](https://cldr.unicode.org/#h.59ffxi4tj4wz) set of Unicode characters|
-|`:RumpelFull`|Opens an FZF window to search all unicode codepoints (except newline...)|
+|`:RumpelBase`|Opens an FZF window to search all unicode codepoints (except newline...)|
 |`:RumpelEmoji`|Opens an FZF window to search all emoji|
 
 Example mapping:
@@ -64,8 +63,7 @@ The plugin provides the following public functions:
 ### Insert Mode Functions
 |Function|Description|
 |-|-|
-|`rumpelstiltskin#cldr_complete()`|Opens a mini FZF pop-up to search the [CLDR](https://cldr.unicode.org/#h.59ffxi4tj4wz) set of Unicode characters|
-|`rumpelstiltskin#full_complete()`|Opens a mini FZF pop-up to search all unicode codepoints (except newline...)|
+|`rumpelstiltskin#base_complete()`|Opens a mini FZF pop-up to search all unicode codepoints (except newline...)|
 |`rumpelstiltskin#emoji_complete()`|Opens a mini FZF pop-up to search all emoji|
 
 These come with a default mapping (see table below) which can be overwritten
@@ -74,14 +72,13 @@ These come with a default mapping (see table below) which can be overwritten
 ### Insert Mode Variables
 |Variable|Corresponding function|Default value|
 |-|-|-|
-|`g:rumpelstiltskin_cldr_i`|`rumpelstiltskin#cldr_complete()`|`'<C-X>:'`|
-|`g:rumpelstiltskin_full_i`|`rumpelstiltskin#full_complete()`|`'<C-X>u'`|
+|`g:rumpelstiltskin_base_i`|`rumpelstiltskin#base_complete()`|`'<C-X>u'`|
 |`g:rumpelstiltskin_emoji_i`|`rumpelstiltskin#emoji_complete()`|`'<C-X>e'`|
 
 Customizing these looks like:
 
 ```vim
-let g:rumpelstiltskin_cldr_i = ':cldr'
+let g:rumpelstiltskin_base_i = ':base'
 ```
 
 **NOTE** The way the insert mode customization works requires a restart of vim,
@@ -99,19 +96,12 @@ Each Unicode character has a codepoint and a name, but various combinations of
 
 Here is what's in each:
 
-- **Full** is the "full" set of unicode characters. "Full" is in quotes because
-  attentive readers will notice it only has about 32k characters (not 144k)!
-  It's just what Unicode.org lists in UnicodeData.txt. If you know of a place
-  where I can get _all_ characters in one place, plese submit an issue or PR!
-  These characters have one name, maybe another that adds or removes a
-  preposition or uses a synonym for one of the words. This source also includes
-  the codepoint for each character.
-- **CLDR** contains a subset of common characters that have _multiple_ names.
-  This set is just the English localization, because that's the language I know
-  best! Customization is coming, this is not the final state of the plugin!
-  **This is, in my opinion, the best set for fuzzy-searching**.
-  Each character (or set of characters, e.g. with skin tone) has several common
-  names, so if you "kinda" know what you're looking for, it's still helpful.
+- **Base** is the set of all the characters with names available from
+  unicode.org (see the ruby scripts for the exact source URLs). This is
+  supplemented with synonyms from the english-language CLDR data, including
+  the text-to-speech data. This is recommended for users that want access to
+  the most characters by name possible. Also includes codepoint where
+  applicable.
 - **Emoji** contains what Unicode describes as "emoji". Each has one name, and
   the group it belongs to (e.g. "face-unwell" is a group including 🥵 and 🤮)
 
