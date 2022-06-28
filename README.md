@@ -87,7 +87,8 @@ let g:rumpelstiltskin_base_i = ':base'
 This is the weirdness referred to earlier. Sorry! It's on the roadmap.
 
 # Demo
-![rumpelstiltskin_demo](https://user-images.githubusercontent.com/16344962/167204154-ce90dfae-618f-40b9-90e0-479219ebd383.gif)
+![rumpelstiltskin_demo](https://user-images.githubusercontent.com/17604174/176318444-af4b3078-5602-4857-a1ee-b36ef88b5229.gif)
+
 
 # Predicted Frequently Asked Questions (PFAQ)
 ## What are these "Sets"?
