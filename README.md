@@ -47,13 +47,14 @@ Installing this plugin gives you the following commands:
 ### Normal Mode Commands
 |Command|Description|
 |-|-|
+|`:Rumpel`|alias for `:RumpelBase`|
 |`:RumpelBase`|Opens an FZF window to search all unicode codepoints (except newline...)|
 |`:RumpelEmoji`|Opens an FZF window to search all emoji|
 
 Example mapping:
 
 ```vim
-nmap <Leader>: :RumpelCLDR
+nmap <Leader>: :RumpelEmoji
 ```
 
 ## Insert Mode
@@ -124,5 +125,4 @@ It still works fine and in testing, I found it still totally legible.
 * Add extension support and documentation for extension
 * Add "similar plugins" section
 * Supplement math symbols with LaTeX names, where applicable
-* List sources and include bash scripts for formatting from the source
 * Add tutorial/practice file
