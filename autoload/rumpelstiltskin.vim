@@ -31,37 +31,49 @@ endfunction
 " General ("Base") functions
 " Insert mode completion
 function! rumpelstiltskin#base_complete()
-  call fzf#vim#complete(fzf#wrap({
-        \ 'source': 'cat ' . g:rumpelstiltskin_base_source,
-        \ 'reducer': { text -> split(text[0], ' ... ')[0] },
-        \ 'window': { 'width': 0.6, 'height': 0.2, 'xoffset': 0.5 }
-        \ }))
+  call fzf#vim#complete(
+        \ fzf#wrap({
+          \ 'source': 'cat ' . g:rumpelstiltskin_base_source,
+          \ 'reducer': { text -> split(text[0], ' ... ')[0] },
+          \ 'window': { 'width': 0.6, 'height': 0.2, 'xoffset': 0.5 },
+          \ 'options': '--no-hscroll'
+          \ })
+        \ )
   return ''
 endfunction
 
 " Normal mode search
 function! rumpelstiltskin#base()
-  call fzf#run(fzf#wrap({
-        \ 'source': 'cat ' . g:rumpelstiltskin_base_source,
-        \ 'sink*': function('<SID>insert_sink')
-        \ }))
+  call fzf#run(
+        \ fzf#wrap({
+          \ 'source': 'cat ' . g:rumpelstiltskin_base_source,
+          \ 'sink*': function('<SID>insert_sink'),
+          \ 'options': '--no-hscroll'
+          \ })
+        \ )
 endfunction
 
 " Emoji functions
 " Insert mode completion
 function! rumpelstiltskin#emoji_complete()
-  call fzf#vim#complete(fzf#wrap({
-        \ 'source': 'cat ' . g:rumpelstiltskin_emoji_source,
-        \ 'reducer': { text -> split(text[0], ' ... ')[0] },
-        \ 'window': { 'width': 0.6, 'height': 0.2, 'xoffset': 0.5 }
-        \ }))
+  call fzf#vim#complete(
+        \ fzf#wrap({
+          \ 'source': 'cat ' . g:rumpelstiltskin_emoji_source,
+          \ 'reducer': { text -> split(text[0], ' ... ')[0] },
+          \ 'window': { 'width': 0.6, 'height': 0.2, 'xoffset': 0.5 },
+          \ 'options': '--no-hscroll'
+          \ })
+        \ )
   return ''
 endfunction
 
 " Normal mode search
 function! rumpelstiltskin#emoji()
-  call fzf#run(fzf#wrap({
-        \ 'source': 'cat ' . g:rumpelstiltskin_emoji_source,
-        \ 'sink*': function('<SID>insert_sink')
-        \ }))
+  call fzf#run(
+        \ fzf#wrap({
+          \ 'source': 'cat ' . g:rumpelstiltskin_emoji_source,
+          \ 'sink*': function('<SID>insert_sink'),
+          \ 'options': '--no-hscroll'
+          \ })
+        \ )
 endfunction
