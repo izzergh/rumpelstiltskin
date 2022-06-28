@@ -21,7 +21,7 @@ I tried to avoid that where I thought it would come up, (e.g. using `fzf#wrap`
 Issues and PRs are welcome in that case, just please be kind!
 
 # Demo
-![rumpelstiltskin_demo](https://user-images.githubusercontent.com/16344962/167204154-ce90dfae-618f-40b9-90e0-479219ebd383.gif)
+![rumpelstiltskin_demo](https://user-images.githubusercontent.com/17604174/176318444-af4b3078-5602-4857-a1ee-b36ef88b5229.gif)
 
 # Installation
 First, install `fzf.vim`. **This plugin will not work without `fzf.vim`**.
