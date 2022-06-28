@@ -3,6 +3,9 @@ if exists('g:loaded_rumpelstiltskin')
 endif
 " Start below this line
 
+" Default command
+command! Rumpel :call rumpelstiltskin#base()
+
 " All unicode
 " Normal mode
 command! RumpelBase :call rumpelstiltskin#base()
