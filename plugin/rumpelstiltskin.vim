@@ -10,14 +10,14 @@ command! Rumpel :call rumpelstiltskin#base()
 " Normal mode
 command! RumpelBase :call rumpelstiltskin#base()
 
-" Insert mode (current requires restart to configure)
+" Insert mode
 imap <expr> <C-X>u rumpelstiltskin#base_complete()
 
 " Emoji
 " Normal mode
 command! RumpelEmoji :call rumpelstiltskin#emoji()
 
-" Insert mode (current requires restart to configure)
+" Insert mode
 imap <expr> <C-X>e rumpelstiltskin#emoji_complete()
 
 " Finish above this line

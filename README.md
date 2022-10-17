@@ -14,12 +14,6 @@ It uses the completion functionality provided by [fzf.vim](https://github.com/ju
   and thus that's a dependency.
 It is designed to be extendable and customizable, but with solid defaults.
 
-# Caveat
-This is my first plugin, so it may do something that breaks your general setup.
-I tried to avoid that where I thought it would come up, (e.g. using `fzf#wrap`
-  where applicable) but I probably missed something.
-Issues and PRs are welcome in that case, just please be kind!
-
 # Demo
 ![rumpelstiltskin_demo](https://user-images.githubusercontent.com/17604174/176318444-af4b3078-5602-4857-a1ee-b36ef88b5229.gif)
 
@@ -60,30 +54,17 @@ nmap <Leader>: :RumpelEmoji
 ## Insert Mode
 The plugin provides the following public functions:
 
-### Insert Mode Functions
-|Function|Description|
-|-|-|
-|`rumpelstiltskin#base_complete()`|Opens a mini FZF pop-up to search all unicode codepoints (except newline...)|
-|`rumpelstiltskin#emoji_complete()`|Opens a mini FZF pop-up to search all emoji|
-
-These come with a default mapping (see table below) which can be overwritten.
-
-### Insert Mode Variables
-|Variable|Corresponding function|Default value|
+### Insert Mode Functions and Defaults
+|Function|Default Mapping|Description|
 |-|-|-|
-|`g:rumpelstiltskin_base_i`|`rumpelstiltskin#base_complete()`|`'<C-X>u'`|
-|`g:rumpelstiltskin_emoji_i`|`rumpelstiltskin#emoji_complete()`|`'<C-X>e'`|
+|`rumpelstiltskin#base_complete()`|`'<C-X>u'`|Opens a mini FZF pop-up to search all unicode codepoints (except newline...)|
+|`rumpelstiltskin#emoji_complete()`|`'<C-X>e'`|Opens a mini FZF pop-up to search all emoji|
 
-Customizing these looks like:
+Example mapping:
 
 ```vim
 imap <expr> <Leader>: rumpelstiltskin#base_complete()
 ```
-(change `<leader>:` to the desired mapping)
-
-**NOTE** The way the insert mode customization works requires a restart of vim,
-  not just a `source`.
-This is the weirdness referred to earlier. Sorry! It's on the roadmap.
 
 ## Sets
 **TODO** see issue #27 for progress or to add suggestions.
