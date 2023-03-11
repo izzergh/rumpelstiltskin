@@ -3,25 +3,36 @@
 require 'csv'
 require 'json'
 
+UNICODE_VERSION = '15.1.0'
+CLDR_VERSION = '42.0.0'
+
 OUTPUT_FILE = './base_source.txt'
 FULL_TEMP_FILE = './base.tmp'
 CLDR_TEMP_FILE = './cldr.tmp'
 
-FULL_SOURCE_URL = 'https://unicode.org/Public/14.0.0/ucd/UnicodeData.txt'
+FULL_SOURCE_URL = <<~URL.gsub("\n", '').freeze
+  https://unicode.org/Public/
+  #{UNICODE_VERSION}/
+  ucd/UnicodeData.txt
+URL
 
-CLDR_SOURCE_URL = 'https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-full/annotations/en/annotations.json'
+CLDR_SOURCE_URL = <<~URL.gsub("\n", '').freeze
+  https://raw.githubusercontent.com/unicode-org/cldr-json/
+  #{CLDR_VERSION}/
+  cldr-json/cldr-annotations-full/annotations/en/annotations.json
+URL
 
 BAD_CODEPOINTS = [
   '000A', # Line Feed ("enter"; just inserts a blank line when puts'd)
 ].freeze
 
-base_command = "curl #{FULL_SOURCE_URL} > #{FULL_TEMP_FILE}"
+base_command = "curl -L #{FULL_SOURCE_URL} > #{FULL_TEMP_FILE}"
 puts "pulling named unicode characters...\nrunning #{base_command}"
 pull = system(base_command)
 
 abort 'pull failed :(' unless pull
 
-cldr_command = "curl #{CLDR_SOURCE_URL} > #{CLDR_TEMP_FILE}"
+cldr_command = "curl -L #{CLDR_SOURCE_URL} > #{CLDR_TEMP_FILE}"
 puts "pulling cldr characters...\nrunning #{cldr_command}"
 pull = system(cldr_command)
 
@@ -83,3 +94,5 @@ ensure
   File.delete(FULL_TEMP_FILE)
   File.delete(CLDR_TEMP_FILE)
 end
+
+puts '✓'

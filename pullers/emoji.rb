@@ -2,12 +2,16 @@
 
 require 'csv'
 
+UNICODE_VERSION = '15.1'
+
 OUTPUT_FILE = './emoji_source.txt'
 TEMP_FILE = './emoji.tmp'
 
-SOURCE_URL = 'https://unicode.org/Public/emoji/15.0/emoji-test.txt'
+SOURCE_URL = <<~URL.gsub("\n", '').freeze
+  https://unicode.org/Public/emoji/#{UNICODE_VERSION}/emoji-test.txt
+URL
 
-command = "curl #{SOURCE_URL} > #{TEMP_FILE}"
+command = "curl -L #{SOURCE_URL} > #{TEMP_FILE}"
 puts "running #{command}"
 pull = system(command)
 
@@ -45,3 +49,5 @@ File.open(OUTPUT_FILE, 'w') do |output_file|
 end
 
 File.delete(TEMP_FILE)
+
+puts '✓'
