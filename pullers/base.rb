@@ -1,52 +1,42 @@
 # frozen_string_literal: true
 
 require 'csv'
-require 'json'
+require_relative 'shared/pull_cldr'
 
 UNICODE_VERSION = '15.1.0'
-CLDR_VERSION = '42.0.0'
 
 OUTPUT_FILE = './base_source.txt'
-FULL_TEMP_FILE = './base.tmp'
-CLDR_TEMP_FILE = './cldr.tmp'
+TEMP_FILE = './base.tmp'
 
-FULL_SOURCE_URL = <<~URL.gsub("\n", '').freeze
+SOURCE_URL = <<~URL.gsub("\n", '').freeze
   https://unicode.org/Public/
   #{UNICODE_VERSION}/
   ucd/UnicodeData.txt
-URL
-
-CLDR_SOURCE_URL = <<~URL.gsub("\n", '').freeze
-  https://raw.githubusercontent.com/unicode-org/cldr-json/
-  #{CLDR_VERSION}/
-  cldr-json/cldr-annotations-full/annotations/en/annotations.json
 URL
 
 BAD_CODEPOINTS = [
   '000A', # Line Feed ("enter"; just inserts a blank line when puts'd)
 ].freeze
 
-base_command = "curl -L #{FULL_SOURCE_URL} > #{FULL_TEMP_FILE}"
+base_command = "curl -L #{SOURCE_URL} > #{TEMP_FILE}"
 puts "pulling named unicode characters...\nrunning #{base_command}"
 pull = system(base_command)
 
 abort 'pull failed :(' unless pull
 
-cldr_command = "curl -L #{CLDR_SOURCE_URL} > #{CLDR_TEMP_FILE}"
-puts "pulling cldr characters...\nrunning #{cldr_command}"
-pull = system(cldr_command)
-
-abort 'pull failed :(' unless pull
+# yank CLDR data
+cldr = PullCldr.new
+abort 'pull failed :(' unless cldr.pull
 
 # filters out characters (like "line feed", aka "enter" or "return")
 #  that break the formatting
-def too_tricky?(hex_str) = BAD_CODEPOINTS.include? hex_str
+def too_tricky?(hex_str) = BAD_CODEPOINTS.include?(hex_str)
 
 begin
   all_characters = Hash.new { |hash, key| hash[key] = { base: [], cldr: [] } }
 
   # parse the base csv
-  CSV.parse(File.read(FULL_TEMP_FILE), col_sep: ';').each do |row|
+  CSV.parse(File.read(TEMP_FILE), col_sep: ';').each do |row|
     # Here's the unicode conversion. The first column is the hex codepoint.
     #
     # Ruby does not allow interpolating in the middle of a unicode literal,
@@ -72,14 +62,12 @@ begin
     all_characters[char][:base] << "U+#{hex_str}"
   end
 
-  # parse the cldr json
-  JSON.parse(File.read(CLDR_TEMP_FILE))['annotations']['annotations'].each do |line|
-    char = line.first
-    nicknames = line.last['default']
-    text_to_speech = line.last['tts']
+  # integrate CLDR data
+  cldr.data.each do |line|
+    row = all_characters[line.first]
 
-    all_characters[char][:cldr] += nicknames
-    all_characters[char][:cldr] += text_to_speech
+    row[:cldr] += line.last['default']
+    row[:cldr] += line.last['tts']
   end
 
   # write to the plugin source file
@@ -89,10 +77,11 @@ begin
       output_file.puts "#{character} ... #{names_list}"
     end
   end
+
 # delete temp files no matter what
 ensure
-  File.delete(FULL_TEMP_FILE)
-  File.delete(CLDR_TEMP_FILE)
+  File.delete(TEMP_FILE)
+  cldr.cleanup
 end
 
 puts '✓'
