@@ -1,0 +1,77 @@
+*rumpelstiltskin.txt*                  Input Unicode symbols by name
+
+Fuzzy search for Unicode characters. Unlike a table or codepoint entry wizard,
+this allows a user that "kinda sorta" knows what a symbol is called to use
+just that approximate knowledge to input that very symbol.
+
+A point of language - in this document, "symbol" refers to a codepoint or
+character sequence. For example, both "👍" and "👍🏽" are individually
+"symbols", even though the latter is composed of two codepoints.
+
+This plugin depends on "fzf.vim", a plugin that integrates FZF and vim. The
+following commands will fail if that plugin is not properly installed.
+
+Normal mode~
+
+Use the following commands to insert a symbol from normal mode. For long
+character sequences, the cursor may end up in the middle, so be wary when
+rapidly adding characters with these functions.
+
+To map these commands, do something like the following >
+  nmap <Leader>R :Rumpel
+<
+Replace "<Leader>R" with the mapping of your choosing.
+
+                                                            *:Rumpel*
+This is an alias for |:RumpelBase|.
+                                                            *:RumpelBase*
+Search the "Base" Unicode set. This set includes almost all single codepoints,
+plus the symbols included in the CLDR (Common Locale Data Repository).
+
+The excluded symbols are those that are excluded from the public Unicode
+listing. In their place is the first and last codepoint of the range. For
+example, U+4E00 (一) and U+9FFF (鿿) are the first and last characters in the
+CJK ideographs block. This plugin may be updated to expand those ranges in the
+future, but for now the best way to input those characters is with the
+language's respective keyboard.
+                                                            *:RumpelEmoji*
+Search the "Emoji" Unicode set. This set is composed of the symbols Unicode
+has deemed to be "Emoji". This set includes the supported flags, all smiley
+faces, all hand gestures of all skin tones, all the animals and food, and
+cetera.
+
+Insert Mode~
+                                              *rumpelstiltskin-completion*
+
+Each of the normal mode commands include a completion counterpart. These
+differ in two major ways:
+
+  1. These are used in |Insert-mode|, i.e. while typing.
+  2. They complete, not just type. See |ins-completion| for how that works.
+
+To use one of these functions in insert mode, input the given command.
+If the command is input while on a |word|, the symbol replaces the word.
+If the command is input while not in a |word|, the chosen symbol is placed at
+the cursor.
+In both cases, insert mode is preserved. In other words, pressing enter after
+choosing a symbol will input the symbol and vim will still be in insert mode.
+
+To map these functions, do something like the following: >
+  imap <expr> <Leader>: rumpelstiltskin#base_complete()
+<
+Replace "<Leader>:" with the mapping of your choosing.
+
+                                              *rumpelstiltskin#base_complete*
+Default mapping: *<c-x>u*
+
+Opens a fuzzy search completion window pulling from the base set. This is the
+completion counterpart of |:RumpelBase|.
+
+                                              *rumpelstiltskin#emoji_complete*
+Default mapping: *<c-x>e*
+
+Opens a fuzzy search completion window pulling from the emoji set. This is the
+completion counterpart of |:RumpelEmoji|.
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
