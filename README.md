@@ -71,6 +71,15 @@ imap <expr> <Leader>: rumpelstiltskin#base_complete()
 Currently, you can chase down the source file and replace it with something of
   the same format, which is Not Great.
 
+# Development
+Here are some disorganized tips
+- This project uses Ruby and Ruby's `rake` gem to update its data. Install
+modern Ruby and `rake` (or Ruby and `bundler` and use `bundle install`) to
+run the rake tasks.
+- GitHub does not show a diff for `base_source.txt` (the Big one). You can view
+diffs for that file locally, though, with `git diff`. GitHub just doesn't use
+`.gitattributes` to determine what files to show.
+
 # Predicted Frequently Asked Questions (PFAQ)
 ## What are these "Sets"?
 Unicode provides various charts for public download.
