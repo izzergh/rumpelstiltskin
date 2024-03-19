@@ -15,7 +15,7 @@ require 'json'
 #   supporting one language doesn't sit right with me, either.
 class PullCldr
   TEMP_FILE = './cldr.tmp'
-  CLDR_VERSION = '42.0.0'
+  CLDR_VERSION = '44.1.0'
 
   SOURCE_URL = <<~URL.gsub("\n", '').freeze
     https://raw.githubusercontent.com/unicode-org/cldr-json/
