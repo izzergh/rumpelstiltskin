@@ -25,7 +25,7 @@ imap <expr> <C-X>e rumpelstiltskin#emoji_complete()
 command! RumpelAtomicEmoji :call rumpelstiltskin#atomic_emoji()
 
 " Insert mode
-imap <expr> <C-X>: rumpelstiltskin#atomic_emoji_complete()
+imap <expr> <C-X>a rumpelstiltskin#atomic_emoji_complete()
 
 " Finish above this line
 let g:loaded_rumpelstiltskin = 1

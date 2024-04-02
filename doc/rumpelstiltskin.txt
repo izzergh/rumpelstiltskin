@@ -79,7 +79,7 @@ Opens a fuzzy search completion window pulling from the emoji set. This is the
 completion counterpart of |:RumpelEmoji|.
 
 					  *rumpelstiltskin#atomic_emoji_complete*
-Default mapping: *<c-x>:*
+Default mapping: *<c-x>a*
 
 Opens a fuzzy search completion window pulling from the atomic emoji set. This
 is the completion counterpart of |:RumpelAtomicEmoji|.
