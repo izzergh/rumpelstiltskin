@@ -1,9 +1,10 @@
 let g:rumpelstiltskin_base_source = expand('<sfile>:p:h:h') . '/base_source.txt'
 let g:rumpelstiltskin_emoji_source = expand('<sfile>:p:h:h') . '/emoji_source.txt'
+let g:rumpelstiltskin_atomic_emoji_source = expand('<sfile>:p:h:h') . '/atomic_emoji_source.txt'
 
 " sink function
 function! s:insert_sink(result)
-  let l:char = a:result[0]->split(' ... ')[0]
+  let l:char = split(a:result[0], ' ... ')[0]
   let l:line = getline('.')
   call setline(
         \ '.',
@@ -72,6 +73,31 @@ function! rumpelstiltskin#emoji()
   call fzf#run(
         \ fzf#wrap({
           \ 'source': 'cat ' . g:rumpelstiltskin_emoji_source,
+          \ 'sink*': function('<SID>insert_sink'),
+          \ 'options': '--no-hscroll'
+          \ })
+        \ )
+endfunction
+
+" Single-character emoji functions
+" Insert mode completion
+function! rumpelstiltskin#atomic_emoji_complete()
+  call fzf#vim#complete(
+        \ fzf#wrap({
+          \ 'source': 'cat ' . g:rumpelstiltskin_atomic_emoji_source,
+          \ 'reducer': { text -> split(text[0], ' ... ')[0] },
+          \ 'window': { 'width': 0.6, 'height': 0.2, 'xoffset': 0.5 },
+          \ 'options': '--no-hscroll'
+          \ })
+        \ )
+  return ''
+endfunction
+
+" Normal mode search
+function! rumpelstiltskin#atomic_emoji()
+  call fzf#run(
+        \ fzf#wrap({
+          \ 'source': 'cat ' . g:rumpelstiltskin_atomic_emoji_source,
           \ 'sink*': function('<SID>insert_sink'),
           \ 'options': '--no-hscroll'
           \ })

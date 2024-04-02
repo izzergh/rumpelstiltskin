@@ -4,6 +4,7 @@ desc 'Pull and update all source files'
 task :pull_all do
   Rake::Task['pull_base'].invoke
   Rake::Task['pull_emoji'].invoke
+  Rake::Task['pull_atomic_emoji'].invoke
 end
 
 namespace :check do
@@ -26,4 +27,13 @@ task pull_emoji: %w[check:curl] do
   puts 'pulling emoji source...'
   ruby './pullers/emoji.rb'
   puts '🤟 Pulled emoji!'
+end
+
+desc <<~DESC
+  Pull emoji source file from unicode.org public site and filter out sequences
+DESC
+task pull_atomic_emoji: %w[check:curl] do
+  puts 'pulling emoji source...'
+  ruby './pullers/atomic_emoji.rb'
+  puts '🤟 Pulled atomic emoji!'
 end

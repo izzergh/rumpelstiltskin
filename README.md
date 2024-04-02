@@ -44,6 +44,7 @@ Installing this plugin gives you the following commands:
 |`:Rumpel`|alias for `:RumpelBase`|
 |`:RumpelBase`|Opens an FZF window to search all unicode codepoints (except newline...)|
 |`:RumpelEmoji`|Opens an FZF window to search all emoji|
+|`:RumpelAtomicEmoji`|Opens an FZF window to search single-character emoji|
 
 Example mapping:
 
@@ -59,6 +60,7 @@ The plugin provides the following public functions:
 |-|-|-|
 |`rumpelstiltskin#base_complete()`|`<C-X>u`|Opens a mini FZF pop-up to search all unicode codepoints (except newline...)|
 |`rumpelstiltskin#emoji_complete()`|`<C-X>e`|Opens a mini FZF pop-up to search all emoji|
+|`rumpelstiltskin#atomic_emoji_complete()`|`<C-X>e`|Opens a mini FZF pop-up to search only single-character emoji|
 
 Example mapping:
 
@@ -96,6 +98,8 @@ Here is what's in each:
   applicable.
 - **Emoji** contains what Unicode describes as "emoji". Each has one name, and
   the group it belongs to (e.g. "face-unwell" is a group including 🥵 and 🤮)
+- **Atomic Emoji** is the same as the above set but only with emoji that are a
+  single character.
 
 ## Why are some of these emoji several characters wide?
 Many terminals do not support ZWJ (zero-width join) emoji, and instead
@@ -111,6 +115,9 @@ My setup also likes to eat characters after `U+200D` appears. It's super weird.
 For the same reason, your fuzzy search window may have some artifacts when it
   scrolls across entries with the ZWJ joiner.
 It still works fine and in testing, I found it still totally legible.
+
+To avoid this issue (at the cost of losing emoji sequences), use the "Atomic
+Emoji" set instead.
 
 # Upcoming changes! (a.k.a. the wishlist)
 * Add extension support and documentation for extension

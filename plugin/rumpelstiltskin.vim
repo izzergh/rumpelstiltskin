@@ -20,5 +20,12 @@ command! RumpelEmoji :call rumpelstiltskin#emoji()
 " Insert mode
 imap <expr> <C-X>e rumpelstiltskin#emoji_complete()
 
+" Single-character emoji only
+" Normal mode
+command! RumpelAtomicEmoji :call rumpelstiltskin#atomic_emoji()
+
+" Insert mode
+imap <expr> <C-X>: rumpelstiltskin#atomic_emoji_complete()
+
 " Finish above this line
 let g:loaded_rumpelstiltskin = 1
