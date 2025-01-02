@@ -3,7 +3,7 @@
 require 'csv'
 require_relative 'shared/pull_cldr'
 
-UNICODE_VERSION = '15.1'
+UNICODE_VERSION = 'latest'
 
 OUTPUT_FILE = './emoji_source.txt'
 TEMP_FILE = './emoji.tmp'

@@ -3,7 +3,7 @@
 require 'csv'
 require_relative 'shared/pull_cldr'
 
-UNICODE_VERSION = '15.1.0'
+UNICODE_VERSION = '16.0.0'
 
 OUTPUT_FILE = './base_source.txt'
 TEMP_FILE = './base.tmp'
